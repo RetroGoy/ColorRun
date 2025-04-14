@@ -84,7 +84,7 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/includes/header.jsp" />
+<jsp:include page="../includes/header.jsp" />
 
 <div class="content-wrapper">
     <!-- Hero Section -->
@@ -156,7 +156,7 @@
                 <c:forEach items="${upcomingRaces}" var="race" end="2">
                     <div class="col-md-4">
                         <div class="card h-100 event-card shadow-sm">
-                            <img src="${pageContext.request.contextPath}/resources/images/course-${race.id}.jpg" class="event-image" alt="${race.name}">
+                            <img src="${pageContext.request.contextPath}/resources/images/course-${race.id}.jpg" class="event-image" alt="${race.name}" onerror="this.src='${pageContext.request.contextPath}/resources/images/course-placeholder-1.jpg'">
                             <div class="card-body">
                                 <h5 class="card-title">${race.name}</h5>
                                 <p class="card-text mb-1">
@@ -181,7 +181,7 @@
                 <c:if test="${empty upcomingRaces}">
                     <div class="col-md-4">
                         <div class="card h-100 event-card shadow-sm">
-                            <img src="${pageContext.request.contextPath}/resources/images/course-placeholder-1.jpg" class="event-image" alt="ColorRun Paris">
+                            <img src="${pageContext.request.contextPath}/resources/images/course-placeholder-1.jpg" class="event-image" alt="ColorRun Paris" onerror="this.src='${pageContext.request.contextPath}/resources/images/course-placeholder-1.jpg'">
                             <div class="card-body">
                                 <h5 class="card-title">ColorRun Paris</h5>
                                 <p class="card-text mb-1">
@@ -202,7 +202,7 @@
                     
                     <div class="col-md-4">
                         <div class="card h-100 event-card shadow-sm">
-                            <img src="${pageContext.request.contextPath}/resources/images/course-placeholder-2.jpg" class="event-image" alt="ColorRun Lyon">
+                            <img src="${pageContext.request.contextPath}/resources/images/course-placeholder-2.jpg" class="event-image" alt="ColorRun Lyon" onerror="this.src='${pageContext.request.contextPath}/resources/images/course-placeholder-2.jpg'">
                             <div class="card-body">
                                 <h5 class="card-title">ColorRun Lyon</h5>
                                 <p class="card-text mb-1">
@@ -223,7 +223,7 @@
                     
                     <div class="col-md-4">
                         <div class="card h-100 event-card shadow-sm">
-                            <img src="${pageContext.request.contextPath}/resources/images/course-placeholder-3.jpg" class="event-image" alt="ColorRun Marseille">
+                            <img src="${pageContext.request.contextPath}/resources/images/course-placeholder-3.jpg" class="event-image" alt="ColorRun Marseille" onerror="this.src='${pageContext.request.contextPath}/resources/images/course-placeholder-3.jpg'">
                             <div class="card-body">
                                 <h5 class="card-title">ColorRun Marseille</h5>
                                 <p class="card-text mb-1">
@@ -255,7 +255,7 @@
                 <div class="col-md-4">
                     <div class="testimonial-card">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="${pageContext.request.contextPath}/resources/images/participant-1.jpg" alt="Participant">
+                            <img src="${pageContext.request.contextPath}/resources/images/participant-1.jpg" alt="Participant" onerror="this.src='${pageContext.request.contextPath}/resources/images/participant-placeholder.jpg'">
                             <div>
                                 <h5 class="mb-0">Sophie D.</h5>
                                 <p class="text-muted mb-0">Paris</p>
@@ -268,7 +268,7 @@
                 <div class="col-md-4">
                     <div class="testimonial-card">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="${pageContext.request.contextPath}/resources/images/participant-2.jpg" alt="Participant">
+                            <img src="${pageContext.request.contextPath}/resources/images/participant-2.jpg" alt="Participant" onerror="this.src='${pageContext.request.contextPath}/resources/images/participant-placeholder.jpg'">
                             <div>
                                 <h5 class="mb-0">Thomas M.</h5>
                                 <p class="text-muted mb-0">Lyon</p>
@@ -281,7 +281,7 @@
                 <div class="col-md-4">
                     <div class="testimonial-card">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="${pageContext.request.contextPath}/resources/images/participant-3.jpg" alt="Participant">
+                            <img src="${pageContext.request.contextPath}/resources/images/participant-3.jpg" alt="Participant" onerror="this.src='${pageContext.request.contextPath}/resources/images/participant-placeholder.jpg'">
                             <div>
                                 <h5 class="mb-0">Julie L.</h5>
                                 <p class="text-muted mb-0">Marseille</p>
@@ -309,7 +309,7 @@
     </section>
 </div>
 
-<jsp:include page="/WEB-INF/includes/footer.jsp" />
+<jsp:include page="../includes/footer.jsp" />
 
 <!-- Bootstrap JS & jQuery -->
 <script src="${pageContext.request.contextPath}/webjars/jquery/3.7.1/jquery.min.js"></script>
@@ -319,4 +319,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 </body>
-</html>
+</html> 
