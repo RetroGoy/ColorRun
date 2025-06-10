@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColorRun - Accueil</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/resources/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+        }
+        
+        .testimonial-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête -->
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- Section Hero -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-4">Bienvenue sur ColorRun</h1>
+            <p class="lead mb-4">Participez à la course la plus colorée et festive de l'année !</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a th:href="@{/races}" class="btn btn-primary btn-lg">Voir les courses</a>
+                <a th:href="@{/register}" class="btn btn-outline-light btn-lg">S'inscrire</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Caractéristiques -->
+    <section class="container mb-5">
+        <h2 class="text-center mb-4">Pourquoi participer à ColorRun ?</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-emoji-smile display-4 text-primary mb-3"></i>
+                        <h3 class="card-title">Pour le plaisir</h3>
+                        <p class="card-text">Une expérience unique et colorée qui vous fera sourire du début à la fin.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-people display-4 text-success mb-3"></i>
+                        <h3 class="card-title">Pour la communauté</h3>
+                        <p class="card-text">Rejoignez une communauté dynamique et partagez des moments inoubliables.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-heart display-4 text-danger mb-3"></i>
+                        <h3 class="card-title">Pour la santé</h3>
+                        <p class="card-text">Restez en forme tout en vous amusant avec nos parcours adaptés à tous les niveaux.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Prochains événements -->
+    <section class="container mb-5">
+        <h2 class="text-center mb-4">Prochains événements</h2>
+        <div class="row">
+            <!-- Événements statiques -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img th:src="@{/resources/images/course-placeholder-1.jpg}" class="card-img-top" alt="Course Paris">
+                    <div class="card-body">
+                        <h5 class="card-title">ColorRun Paris</h5>
+                        <p class="card-text mb-1"><i class="bi bi-calendar-event"></i> 15 Mai 2025</p>
+                        <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> Parc de la Villette</p>
+                        <p class="card-text"><i class="bi bi-rulers"></i> 5 km</p>
+                        <a th:href="@{/races/1}" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img th:src="@{/resources/images/course-placeholder-2.jpg}" class="card-img-top" alt="Course Lyon">
+                    <div class="card-body">
+                        <h5 class="card-title">ColorRun Lyon</h5>
+                        <p class="card-text mb-1"><i class="bi bi-calendar-event"></i> 22 Juin 2025</p>
+                        <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> Parc de la Tête d'Or</p>
+                        <p class="card-text"><i class="bi bi-rulers"></i> 7 km</p>
+                        <a th:href="@{/races/2}" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img th:src="@{/resources/images/course-placeholder-3.jpg}" class="card-img-top" alt="Course Marseille">
+                    <div class="card-body">
+                        <h5 class="card-title">ColorRun Marseille</h5>
+                        <p class="card-text mb-1"><i class="bi bi-calendar-event"></i> 8 Juillet 2025</p>
+                        <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> Parc Borély</p>
+                        <p class="card-text"><i class="bi bi-rulers"></i> 10 km</p>
+                        <a th:href="@{/races/3}" class="btn btn-primary">En savoir plus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Témoignages -->
+    <section class="container mb-5">
+        <h2 class="text-center mb-4">Ce que disent nos participants</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="mb-3">"Une expérience incroyable ! L'ambiance était au rendez-vous et l'organisation parfaite."</p>
+                    <div class="d-flex align-items-center">
+                        <img th:src="@{/resources/images/participant-1.jpg}" alt="Sophie" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                        <div>
+                            <h5 class="mb-0">Sophie D.</h5>
+                            <small class="text-muted">ColorRun Paris 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="mb-3">"Je recommande vivement ! Une journée pleine de couleurs et de bonne humeur."</p>
+                    <div class="d-flex align-items-center">
+                        <img th:src="@{/resources/images/participant-2.jpg}" alt="Thomas" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                        <div>
+                            <h5 class="mb-0">Thomas R.</h5>
+                            <small class="text-muted">ColorRun Lyon 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card">
+                    <p class="mb-3">"Ma première course colorée et certainement pas la dernière ! Un moment inoubliable."</p>
+                    <div class="d-flex align-items-center">
+                        <img th:src="@{/resources/images/participant-3.jpg}" alt="Marie" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                        <div>
+                            <h5 class="mb-0">Marie L.</h5>
+                            <small class="text-muted">ColorRun Marseille 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Call-to-Action -->
+    <section class="bg-primary text-white py-5 mb-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Prêt à rejoindre l'aventure ColorRun ?</h2>
+            <p class="lead mb-4">Inscrivez-vous maintenant et préparez-vous à vivre une expérience unique !</p>
+            <a th:href="@{/register}" class="btn btn-light btn-lg">Je m'inscris</a>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <!-- Scripts -->
+    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html> 

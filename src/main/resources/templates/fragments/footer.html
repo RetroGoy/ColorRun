@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <footer th:fragment="footer" class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>ColorRun</h5>
+                    <p>La course la plus colorée et festive de l'année !</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Liens utiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a th:href="@{/races}" class="text-white text-decoration-none">Courses</a></li>
+                        <li><a th:href="@{/contact}" class="text-white text-decoration-none">Contact</a></li>
+                        <li><a th:href="@{/register}" class="text-white text-decoration-none">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Contact</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-geo-alt"></i> 123 Rue de la Course, Paris</li>
+                        <li><i class="bi bi-envelope"></i> contact@colorrun.fr</li>
+                        <li><i class="bi bi-phone"></i> +33 1 23 45 67 89</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 ColorRun. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

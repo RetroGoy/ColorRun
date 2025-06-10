@@ -21,10 +21,30 @@ public class Race {
     private User organizer;
     private List<User> participants;
     private List<Message> discussionThread;
+    private RaceType raceType;
+
+    public enum RaceType {
+        CLASSIC("Course classique"),
+        NIGHT("Course nocturne"),
+        OBSTACLE("Course à obstacles"),
+        FAMILY("Course familiale"),
+        CHARITY("Course caritative");
+
+        private final String label;
+
+        RaceType(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
 
     public Race() {
         this.participants = new ArrayList<>();
         this.discussionThread = new ArrayList<>();
+        this.raceType = RaceType.CLASSIC; // Type par défaut
     }
 
     public Race(String name, String description, LocalDateTime dateTime, String location,
@@ -39,6 +59,7 @@ public class Race {
         this.organizer = organizer;
         this.participants = new ArrayList<>();
         this.discussionThread = new ArrayList<>();
+        this.raceType = RaceType.CLASSIC; // Type par défaut
     }
 
     // Getters et Setters
@@ -163,6 +184,14 @@ public class Race {
 
     public void addMessage(Message message) {
         this.discussionThread.add(message);
+    }
+
+    public RaceType getRaceType() {
+        return raceType;
+    }
+
+    public void setRaceType(RaceType raceType) {
+        this.raceType = raceType;
     }
 
     @Override

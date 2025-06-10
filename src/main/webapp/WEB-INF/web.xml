@@ -31,4 +31,10 @@
         <url-pattern>/h2-console/*</url-pattern>
     </servlet-mapping>
 
+    <!-- Configuration pour servir les ressources webjars -->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/webjars/*</url-pattern>
+    </servlet-mapping>
+
 </web-app>

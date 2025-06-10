@@ -2,6 +2,7 @@ package fr.esgi.color_run.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
 
 /**
  * Classe représentant un utilisateur de l'application Color Run
@@ -13,8 +14,17 @@ public class User {
     private String email;
     private String password;
     private String profilePicture;
+    private String phone;
     private Role role;
     private List<Race> participatingRaces;
+    private boolean emailNotificationsEnabled;
+    private boolean smsNotificationsEnabled;
+    private boolean newsletterEnabled;
+    private LocalDate birthDate;
+    private String gender;
+    private String address;
+    private String postalCode;
+    private String city;
 
     public enum Role {
         PARTICIPANT,
@@ -24,6 +34,9 @@ public class User {
 
     public User() {
         this.participatingRaces = new ArrayList<>();
+        this.emailNotificationsEnabled = true;
+        this.smsNotificationsEnabled = false;
+        this.newsletterEnabled = false;
     }
 
     public User(String firstName, String lastName, String email, String password) {
@@ -31,11 +44,14 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = Role.PARTICIPANT; // Par défaut, un utilisateur est un participant
+        this.role = Role.PARTICIPANT;
         this.participatingRaces = new ArrayList<>();
+        this.emailNotificationsEnabled = true;
+        this.smsNotificationsEnabled = false;
+        this.newsletterEnabled = false;
     }
 
-    // Getters et Setters
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -108,6 +124,78 @@ public class User {
 
     public boolean removeParticipatingRace(Race race) {
         return this.participatingRaces.remove(race);
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public boolean isEmailNotificationsEnabled() {
+        return emailNotificationsEnabled;
+    }
+
+    public void setEmailNotificationsEnabled(boolean emailNotificationsEnabled) {
+        this.emailNotificationsEnabled = emailNotificationsEnabled;
+    }
+
+    public boolean isSmsNotificationsEnabled() {
+        return smsNotificationsEnabled;
+    }
+
+    public void setSmsNotificationsEnabled(boolean smsNotificationsEnabled) {
+        this.smsNotificationsEnabled = smsNotificationsEnabled;
+    }
+
+    public boolean isNewsletterEnabled() {
+        return newsletterEnabled;
+    }
+
+    public void setNewsletterEnabled(boolean newsletterEnabled) {
+        this.newsletterEnabled = newsletterEnabled;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override

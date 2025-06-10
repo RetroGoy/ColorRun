@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une course - ColorRun</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    
+    <style>
+        .create-race-container {
+            min-height: calc(100vh - 200px);
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .create-race-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #map {
+            height: 300px;
+            border-radius: 10px;
+        }
+        
+        .form-section {
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-top: 10px;
+        }
+        
+        .schedule-item {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .schedule-item:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- En-tête -->
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <!-- Contenu principal -->
+    <div class="create-race-container">
+        <div class="container">
+            <div class="create-race-card p-4">
+                <h1 class="text-center mb-5">Créer une nouvelle course</h1>
+                
+                <!-- Messages d'erreur/succès -->
+                <div th:if="${param.success}" class="alert alert-success">
+                    La course a été créée avec succès !
+                </div>
+                <div th:if="${param.error}" class="alert alert-danger">
+                    Une erreur est survenue lors de la création de la course.
+                </div>
+                
+                <!-- Formulaire de création -->
+                <form th:action="@{/races/create}" method="post" th:object="${race}" enctype="multipart/form-data">
+                    <!-- Informations générales -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Informations générales</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" th:field="*{name}" required>
+                                    <label for="name">Nom de la course</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="location" th:field="*{location}" required>
+                                    <label for="location">Lieu</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control datepicker" id="date" th:field="*{date}" required>
+                                    <label for="date">Date</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control timepicker" id="time" th:field="*{time}" required>
+                                    <label for="time">Heure</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="distance" th:field="*{distance}" required min="1" step="0.1">
+                                    <label for="distance">Distance (km)</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="price" th:field="*{price}" required min="0" step="0.01">
+                                    <label for="price">Prix (€)</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="maxParticipants" th:field="*{maxParticipants}" required min="1">
+                                    <label for="maxParticipants">Nombre maximum de participants</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Description et exigences -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Description et exigences</h4>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="description" th:field="*{description}" style="height: 150px" required></textarea>
+                                    <label for="description">Description de la course</label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" id="requirements" th:field="*{requirements}" style="height: 100px" required></textarea>
+                                    <label for="requirements">Exigences (une par ligne)</label>
+                                </div>
+                                <small class="text-muted">Exemple : "- Être âgé de 12 ans minimum"</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Programme -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Programme de la journée</h4>
+                        <div id="scheduleItems">
+                            <div class="schedule-item" th:each="item, stat : *{scheduleItems}">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control timepicker" th:field="*{scheduleItems[__${stat.index}__].time}" required>
+                                            <label th:for="${'scheduleItems' + stat.index + '.time'}">Heure</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" th:field="*{scheduleItems[__${stat.index}__].description}" required>
+                                            <label th:for="${'scheduleItems' + stat.index + '.description'}">Description</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" class="btn btn-danger" onclick="removeScheduleItem(this)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary mt-3" onclick="addScheduleItem()">
+                            <i class="bi bi-plus-circle me-2"></i>Ajouter une étape
+                        </button>
+                    </div>
+                    
+                    <!-- Localisation -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Localisation</h4>
+                        <div id="map" class="mb-3"></div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="latitude" th:field="*{latitude}" required step="any">
+                                    <label for="latitude">Latitude</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" class="form-control" id="longitude" th:field="*{longitude}" required step="any">
+                                    <label for="longitude">Longitude</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Images -->
+                    <div class="form-section">
+                        <h4 class="mb-4">Images</h4>
+                        <div class="mb-3">
+                            <label for="mainImage" class="form-label">Image principale</label>
+                            <input type="file" class="form-control" id="mainImage" name="mainImage" accept="image/*" required>
+                            <img id="mainImagePreview" class="image-preview d-none" alt="Aperçu de l'image principale">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="galleryImages" class="form-label">Galerie d'images (facultatif)</label>
+                            <input type="file" class="form-control" id="galleryImages" name="galleryImages" accept="image/*" multiple>
+                            <div id="galleryPreview" class="row mt-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bouton de soumission -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-check-circle me-2"></i>Créer la course
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pied de page -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <!-- Scripts -->
+    <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
+    <script>
+        // Initialisation de Flatpickr pour les dates et heures
+        flatpickr(".datepicker", {
+            locale: "fr",
+            dateFormat: "d/m/Y",
+            minDate: "today"
+        });
+        
+        flatpickr(".timepicker", {
+            locale: "fr",
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true
+        });
+        
+        // Initialisation de la carte
+        const map = L.map('map').setView([48.8566, 2.3522], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        let marker;
+        
+        map.on('click', function(e) {
+            const lat = e.latlng.lat;
+            const lng = e.latlng.lng;
+            
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lng;
+            
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng).addTo(map);
+            }
+        });
+        
+        // Gestion des étapes du programme
+        function addScheduleItem() {
+            const container = document.getElementById('scheduleItems');
+            const index = container.children.length;
+            
+            const item = document.createElement('div');
+            item.className = 'schedule-item';
+            item.innerHTML = `
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control timepicker" name="scheduleItems[${index}].time" required>
+                            <label for="scheduleItems${index}.time">Heure</label>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" name="scheduleItems[${index}].description" required>
+                            <label for="scheduleItems${index}.description">Description</label>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger" onclick="removeScheduleItem(this)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(item);
+            
+            // Réinitialisation de Flatpickr pour le nouveau champ
+            flatpickr(item.querySelector('.timepicker'), {
+                locale: "fr",
+                enableTime: true,
+                noCalendar: true,
+                dateFormat: "H:i",
+                time_24hr: true
+            });
+        }
+        
+        function removeScheduleItem(button) {
+            button.closest('.schedule-item').remove();
+        }
+        
+        // Prévisualisation des images
+        document.getElementById('mainImage').addEventListener('change', function(e) {
+            const preview = document.getElementById('mainImagePreview');
+            const file = e.target.files[0];
+            
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+                preview.classList.remove('d-none');
+            }
+        });
+        
+        document.getElementById('galleryImages').addEventListener('change', function(e) {
+            const preview = document.getElementById('galleryPreview');
+            preview.innerHTML = '';
+            
+            Array.from(e.target.files).forEach(file => {
+                const col = document.createElement('div');
+                col.className = 'col-md-4 mb-3';
+                
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.className = 'image-preview';
+                img.alt = 'Aperçu';
+                
+                col.appendChild(img);
+                preview.appendChild(col);
+            });
+        });
+    </script>
+</body>
+</html> 

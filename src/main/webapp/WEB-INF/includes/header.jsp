@@ -41,18 +41,18 @@
                                 ${sessionScope.user.firstName} ${sessionScope.user.lastName}
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                                <c:choose>
-                                    <c:when test="${sessionScope.user.role == 'ADMIN'}">
-                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/dashboard">Tableau de bord</a></li>
-                                    </c:when>
-                                    <c:when test="${sessionScope.user.role == 'ORGANIZER'}">
-                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/organizer/dashboard">Tableau de bord</a></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/participant/dashboard">Mon profil</a></li>
-                                    </c:otherwise>
-                                </c:choose>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/my-races">Mes courses</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/profile">Mon profil</a></li>
+                                <c:if test="${sessionScope.user.role == 'PARTICIPANT'}">
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/my-races">Mes courses</a></li>
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/contact">Devenir organisateur</a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.user.role == 'ORGANIZER'}">
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/organizer/dashboard">Tableau de bord</a></li>
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/organizer/create-race">Créer une course</a></li>
+                                </c:if>
+                                <c:if test="${sessionScope.user.role == 'ADMIN'}">
+                                    <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/dashboard">Administration</a></li>
+                                </c:if>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
                             </ul>
