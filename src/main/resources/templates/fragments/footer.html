@@ -2,39 +2,178 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <style>
+        :root {
+            --color-pink: #ff69b4;
+            --color-purple: #9370db;
+            --color-blue: #4169e1;
+            --color-yellow: #ffd700;
+            --color-green: #32cd32;
+        }
+
+        footer {
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue)) !important;
+            color: white;
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                var(--color-pink),
+                var(--color-yellow),
+                var(--color-green),
+                var(--color-blue),
+                var(--color-purple)
+            );
+        }
+
+        footer h5 {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--color-yellow);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        footer .list-unstyled li {
+            margin-bottom: 0.8rem;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.9) !important;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white !important;
+            transform: translateX(5px);
+        }
+
+        footer .bi {
+            margin-right: 0.5rem;
+            color: var(--color-yellow);
+        }
+
+        footer .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            background: var(--color-yellow);
+            transform: translateY(-3px);
+        }
+
+        footer .social-links a:hover i {
+            color: var(--color-purple) !important;
+        }
+
+        footer hr {
+            border-color: rgba(255, 255, 255, 0.1);
+            margin: 2rem 0;
+        }
+
+        footer .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bg-bubbles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .footer-bg-bubbles span {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.18;
+            filter: blur(2px);
+            animation: footerBubbleMove 10s infinite alternate;
+        }
+        .footer-bg-bubbles .b1 { background: var(--color-pink); width: 70px; height: 70px; left: 15%; top: 60%; animation-delay: 0s; }
+        .footer-bg-bubbles .b2 { background: var(--color-yellow); width: 50px; height: 50px; left: 80%; top: 20%; animation-delay: 2s; }
+        .footer-bg-bubbles .b3 { background: var(--color-blue); width: 90px; height: 90px; left: 60%; top: 80%; animation-delay: 1s; }
+        .footer-bg-bubbles .b4 { background: var(--color-green); width: 35px; height: 35px; left: 5%; top: 30%; animation-delay: 3s; }
+        .footer-bg-bubbles .b5 { background: var(--color-purple); width: 60px; height: 60px; left: 75%; top: 70%; animation-delay: 1.5s; }
+        @keyframes footerBubbleMove {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-15px) scale(1.08); }
+        }
+    </style>
 </head>
 <body>
-    <footer th:fragment="footer" class="bg-dark text-white py-4 mt-5">
+    <footer th:fragment="footer" style="position:relative;">
+        <div class="footer-bg-bubbles">
+            <span class="b1"></span>
+            <span class="b2"></span>
+            <span class="b3"></span>
+            <span class="b4"></span>
+            <span class="b5"></span>
+        </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4 mb-4">
                     <h5>ColorRun</h5>
                     <p>La course la plus colorée et festive de l'année !</p>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4 mb-4">
                     <h5>Liens utiles</h5>
                     <ul class="list-unstyled">
-                        <li><a th:href="@{/races}" class="text-white text-decoration-none">Courses</a></li>
-                        <li><a th:href="@{/contact}" class="text-white text-decoration-none">Contact</a></li>
-                        <li><a th:href="@{/register}" class="text-white text-decoration-none">Inscription</a></li>
+                        <li><a th:href="@{/races}"><i class="bi bi-arrow-right"></i>Courses</a></li>
+                        <li><a th:href="@{/contact}"><i class="bi bi-arrow-right"></i>Contact</a></li>
+                        <li><a th:href="@{/register}"><i class="bi bi-arrow-right"></i>Inscription</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4 mb-4">
                     <h5>Contact</h5>
                     <ul class="list-unstyled">
-                        <li><i class="bi bi-geo-alt"></i> 123 Rue de la Course, Paris</li>
-                        <li><i class="bi bi-envelope"></i> contact@colorrun.fr</li>
-                        <li><i class="bi bi-phone"></i> +33 1 23 45 67 89</li>
+                        <li><i class="bi bi-geo-alt"></i>123 Rue de la Course, Paris</li>
+                        <li><i class="bi bi-envelope"></i>contact@colorrun.fr</li>
+                        <li><i class="bi bi-phone"></i>+33 1 23 45 67 89</li>
                     </ul>
                 </div>
             </div>
-            <hr class="my-4">
-            <div class="text-center">
+            <hr>
+            <div class="copyright">
                 <p class="mb-0">&copy; 2024 ColorRun. Tous droits réservés.</p>
             </div>
         </div>

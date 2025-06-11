@@ -5,44 +5,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ColorRun - Accueil</title>
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
+        :root {
+            --color-pink: #ff69b4;
+            --color-purple: #9370db;
+            --color-blue: #4169e1;
+            --color-yellow: #ffd700;
+            --color-green: #32cd32;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+        }
+
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/resources/images/hero-bg.jpg');
+            background: linear-gradient(90deg, 
+                var(--color-pink),
+                var(--color-yellow),
+                var(--color-green),
+                var(--color-blue),
+                var(--color-purple)
+            );
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 100px 0;
-            margin-bottom: 50px;
+            min-height: 60vh;
+            height: 60vh;
+            padding: 0;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                var(--color-pink),
+                var(--color-yellow),
+                var(--color-green),
+                var(--color-blue),
+                var(--color-purple)
+            );
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-section .lead {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue));
+            border: none;
+        }
+
+        .btn-light {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--color-purple);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
         .feature-card {
+            background: white;
             border: none;
             border-radius: 15px;
-            transition: transform 0.3s ease;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
-        
-        .color-dot {
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--color-pink), var(--color-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .event-date {
+            background: linear-gradient(45deg, var(--color-blue), var(--color-purple));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 4rem;
+            color: var(--color-purple);
+            opacity: 0.1;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .cta-section {
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                var(--color-pink),
+                var(--color-yellow),
+                var(--color-green),
+                var(--color-blue),
+                var(--color-purple)
+            );
+        }
+
+        .color-powder-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .cta-powder {
+            position: absolute;
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            display: inline-block;
-            margin: 0 5px;
+            animation: colorPowder 3s infinite;
+            bottom: -20px;
         }
-        
-        .testimonial-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
+
+        @keyframes colorPowder {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .cta-powder:nth-child(1) {
+            background-color: var(--color-pink);
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .cta-powder:nth-child(2) {
+            background-color: var(--color-yellow);
+            left: 30%;
+            animation-delay: 0.5s;
+        }
+
+        .cta-powder:nth-child(3) {
+            background-color: var(--color-blue);
+            left: 50%;
+            animation-delay: 1s;
+        }
+
+        .cta-powder:nth-child(4) {
+            background-color: var(--color-green);
+            left: 70%;
+            animation-delay: 1.5s;
+        }
+
+        .cta-powder:nth-child(5) {
+            background-color: var(--color-purple);
+            left: 90%;
+            animation-delay: 2s;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        section h2 {
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--color-purple), var(--color-blue));
         }
     </style>
 </head>
@@ -50,26 +279,33 @@
     <!-- En-tête -->
     <div th:replace="~{fragments/header :: header}"></div>
 
-    <!-- Section Hero -->
-    <section class="hero-section text-center">
-        <div class="container">
-            <h1 class="display-4 mb-4">Bienvenue sur ColorRun</h1>
-            <p class="lead mb-4">Participez à la course la plus colorée et festive de l'année !</p>
-            <div class="d-flex justify-content-center gap-3">
-                <a th:href="@{/races}" class="btn btn-primary btn-lg">Voir les courses</a>
-                <a th:href="@{/register}" class="btn btn-outline-light btn-lg">S'inscrire</a>
+    <!-- Section Hero avec animation de poudre -->
+    <section class="hero-section">
+        <div class="color-powder-animation">
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+        </div>
+        <div class="container text-center position-relative z-1">
+            <h1 class="display-4 mb-4 text-white">Bienvenue sur ColorRun</h1>
+            <p class="lead mb-4 text-white">Participez à la course la plus colorée et festive de l'année !</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a th:href="@{/races}" class="btn btn-primary btn-lg hover-effect">Voir les courses</a>
+                <a th:href="@{/register}" class="btn btn-light btn-lg hover-effect">S'inscrire</a>
             </div>
         </div>
     </section>
 
     <!-- Section Caractéristiques -->
-    <section class="container mb-5">
+    <section class="container mb-5 py-5">
         <h2 class="text-center mb-4">Pourquoi participer à ColorRun ?</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card feature-card h-100">
                     <div class="card-body text-center">
-                        <i class="bi bi-emoji-smile display-4 text-primary mb-3"></i>
+                        <i class="bi bi-emoji-smile feature-icon"></i>
                         <h3 class="card-title">Pour le plaisir</h3>
                         <p class="card-text">Une expérience unique et colorée qui vous fera sourire du début à la fin.</p>
                     </div>
@@ -78,7 +314,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card feature-card h-100">
                     <div class="card-body text-center">
-                        <i class="bi bi-people display-4 text-success mb-3"></i>
+                        <i class="bi bi-people feature-icon"></i>
                         <h3 class="card-title">Pour la communauté</h3>
                         <p class="card-text">Rejoignez une communauté dynamique et partagez des moments inoubliables.</p>
                     </div>
@@ -87,7 +323,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card feature-card h-100">
                     <div class="card-body text-center">
-                        <i class="bi bi-heart display-4 text-danger mb-3"></i>
+                        <i class="bi bi-heart feature-icon"></i>
                         <h3 class="card-title">Pour la santé</h3>
                         <p class="card-text">Restez en forme tout en vous amusant avec nos parcours adaptés à tous les niveaux.</p>
                     </div>
@@ -97,43 +333,48 @@
     </section>
 
     <!-- Section Prochains événements -->
-    <section class="container mb-5">
+    <section class="container mb-5 py-5">
         <h2 class="text-center mb-4">Prochains événements</h2>
         <div class="row">
-            <!-- Événements statiques -->
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img th:src="@{/resources/images/course-placeholder-1.jpg}" class="card-img-top" alt="Course Paris">
+                    <div class="event-date">15 Mai 2025</div>
+                    <div class="card-img-top d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, var(--color-pink), var(--color-yellow)); height: 200px;">
+                        <i class="bi bi-flag" style="font-size: 3rem; color: white;"></i>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">ColorRun Paris</h5>
-                        <p class="card-text mb-1"><i class="bi bi-calendar-event"></i> 15 Mai 2025</p>
-                        <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> Parc de la Villette</p>
-                        <p class="card-text"><i class="bi bi-rulers"></i> 5 km</p>
-                        <a th:href="@{/races/1}" class="btn btn-primary">En savoir plus</a>
+                        <p class="card-text mb-1"><i class="bi bi-geo-alt text-primary"></i> Parc de la Villette</p>
+                        <p class="card-text"><i class="bi bi-rulers text-primary"></i> 5 km</p>
+                        <a th:href="@{/races/1}" class="btn btn-primary hover-effect">En savoir plus</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img th:src="@{/resources/images/course-placeholder-2.jpg}" class="card-img-top" alt="Course Lyon">
+                    <div class="event-date">22 Juin 2025</div>
+                    <div class="card-img-top d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, var(--color-blue), var(--color-green)); height: 200px;">
+                        <i class="bi bi-flag" style="font-size: 3rem; color: white;"></i>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">ColorRun Lyon</h5>
-                        <p class="card-text mb-1"><i class="bi bi-calendar-event"></i> 22 Juin 2025</p>
-                        <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> Parc de la Tête d'Or</p>
-                        <p class="card-text"><i class="bi bi-rulers"></i> 7 km</p>
-                        <a th:href="@{/races/2}" class="btn btn-primary">En savoir plus</a>
+                        <p class="card-text mb-1"><i class="bi bi-geo-alt text-primary"></i> Parc de la Tête d'Or</p>
+                        <p class="card-text"><i class="bi bi-rulers text-primary"></i> 7 km</p>
+                        <a th:href="@{/races/2}" class="btn btn-primary hover-effect">En savoir plus</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img th:src="@{/resources/images/course-placeholder-3.jpg}" class="card-img-top" alt="Course Marseille">
+                    <div class="event-date">8 Juillet 2025</div>
+                    <div class="card-img-top d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, var(--color-purple), var(--color-pink)); height: 200px;">
+                        <i class="bi bi-flag" style="font-size: 3rem; color: white;"></i>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">ColorRun Marseille</h5>
-                        <p class="card-text mb-1"><i class="bi bi-calendar-event"></i> 8 Juillet 2025</p>
-                        <p class="card-text mb-1"><i class="bi bi-geo-alt"></i> Parc Borély</p>
-                        <p class="card-text"><i class="bi bi-rulers"></i> 10 km</p>
-                        <a th:href="@{/races/3}" class="btn btn-primary">En savoir plus</a>
+                        <p class="card-text mb-1"><i class="bi bi-geo-alt text-primary"></i> Parc Borély</p>
+                        <p class="card-text"><i class="bi bi-rulers text-primary"></i> 10 km</p>
+                        <a th:href="@{/races/3}" class="btn btn-primary hover-effect">En savoir plus</a>
                     </div>
                 </div>
             </div>
@@ -141,14 +382,15 @@
     </section>
 
     <!-- Section Témoignages -->
-    <section class="container mb-5">
+    <section class="container mb-5 py-5">
         <h2 class="text-center mb-4">Ce que disent nos participants</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="testimonial-card">
+                    <i class="bi bi-quote testimonial-quote"></i>
                     <p class="mb-3">"Une expérience incroyable ! L'ambiance était au rendez-vous et l'organisation parfaite."</p>
                     <div class="d-flex align-items-center">
-                        <img th:src="@{/resources/images/participant-1.jpg}" alt="Sophie" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                        <div class="rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: var(--color-pink); color: white; font-size: 1.5rem;">S</div>
                         <div>
                             <h5 class="mb-0">Sophie D.</h5>
                             <small class="text-muted">ColorRun Paris 2024</small>
@@ -158,9 +400,10 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="testimonial-card">
+                    <i class="bi bi-quote testimonial-quote"></i>
                     <p class="mb-3">"Je recommande vivement ! Une journée pleine de couleurs et de bonne humeur."</p>
                     <div class="d-flex align-items-center">
-                        <img th:src="@{/resources/images/participant-2.jpg}" alt="Thomas" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                        <div class="rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: var(--color-blue); color: white; font-size: 1.5rem;">T</div>
                         <div>
                             <h5 class="mb-0">Thomas R.</h5>
                             <small class="text-muted">ColorRun Lyon 2024</small>
@@ -170,9 +413,10 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="testimonial-card">
+                    <i class="bi bi-quote testimonial-quote"></i>
                     <p class="mb-3">"Ma première course colorée et certainement pas la dernière ! Un moment inoubliable."</p>
                     <div class="d-flex align-items-center">
-                        <img th:src="@{/resources/images/participant-3.jpg}" alt="Marie" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                        <div class="rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: var(--color-purple); color: white; font-size: 1.5rem;">M</div>
                         <div>
                             <h5 class="mb-0">Marie L.</h5>
                             <small class="text-muted">ColorRun Marseille 2024</small>
@@ -184,11 +428,18 @@
     </section>
 
     <!-- Section Call-to-Action -->
-    <section class="bg-primary text-white py-5 mb-5">
+    <section class="cta-section mb-5">
+        <div class="color-powder-animation">
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+            <div class="cta-powder"></div>
+        </div>
         <div class="container text-center">
-            <h2 class="mb-4">Prêt à rejoindre l'aventure ColorRun ?</h2>
-            <p class="lead mb-4">Inscrivez-vous maintenant et préparez-vous à vivre une expérience unique !</p>
-            <a th:href="@{/register}" class="btn btn-light btn-lg">Je m'inscris</a>
+            <h2 class="mb-4 text-white">Prêt à rejoindre l'aventure ColorRun ?</h2>
+            <p class="lead mb-4 text-white">Inscrivez-vous maintenant et préparez-vous à vivre une expérience unique !</p>
+            <a th:href="@{/register}" class="btn btn-light btn-lg hover-effect">Je m'inscris</a>
         </div>
     </section>
 

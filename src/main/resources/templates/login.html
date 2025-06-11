@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - ColorRun</title>
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     
     <style>
+        :root {
+            --color-pink: #ff69b4;
+            --color-yellow: #ffd700;
+            --color-blue: #00bfff;
+            --color-green: #32cd32;
+            --color-purple: #9370db;
+        }
+        
         .login-container {
             min-height: calc(100vh - 200px);
             display: flex;
@@ -18,42 +30,148 @@
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/resources/images/login-bg.jpg');
             background-size: cover;
             background-position: center;
+            position: relative;
+            overflow: hidden;
         }
         
         .login-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, 
+                var(--color-pink), 
+                var(--color-yellow), 
+                var(--color-blue), 
+                var(--color-green), 
+                var(--color-purple));
         }
         
         .social-login {
             border-top: 1px solid #dee2e6;
             padding-top: 1.5rem;
             margin-top: 1.5rem;
+            position: relative;
         }
         
         .social-btn {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 25px;
             font-weight: 500;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            transition: all 0.3s ease;
         }
         
         .google-btn {
-            background-color: #fff;
-            color: #757575;
-            border: 1px solid #ddd;
+            background: linear-gradient(45deg, #4285f4, #34a853);
+            color: white;
+            border: none;
         }
         
         .facebook-btn {
-            background-color: #3b5998;
+            background: linear-gradient(45deg, #3b5998, #1877f2);
             color: white;
             border: none;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .form-control {
+            border-radius: 25px;
+            padding: 12px 20px;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 0.2rem rgba(0,191,255,0.25);
+        }
+
+        .input-group-text {
+            border-radius: 25px 0 0 25px;
+            background: linear-gradient(45deg, var(--color-blue), var(--color-purple));
+            color: white;
+            border: none;
+        }
+
+        .input-group .form-control {
+            border-radius: 0 25px 25px 0;
+        }
+
+        .btn-primary {
+            border-radius: 25px;
+            padding: 12px 30px;
+        }
+
+        .color-powder {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            animation: colorPowder 3s infinite;
+        }
+
+        .color-powder:nth-child(1) {
+            background-color: var(--color-pink);
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .color-powder:nth-child(2) {
+            background-color: var(--color-yellow);
+            left: 30%;
+            animation-delay: 0.5s;
+        }
+
+        .color-powder:nth-child(3) {
+            background-color: var(--color-blue);
+            left: 50%;
+            animation-delay: 1s;
+        }
+
+        .color-powder:nth-child(4) {
+            background-color: var(--color-green);
+            left: 70%;
+            animation-delay: 1.5s;
+        }
+
+        .color-powder:nth-child(5) {
+            background-color: var(--color-purple);
+            left: 90%;
+            animation-delay: 2s;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--color-blue);
+            border-color: var(--color-blue);
+        }
+
+        a {
+            color: var(--color-blue);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-purple);
         }
     </style>
 </head>
@@ -63,6 +181,12 @@
 
     <!-- Contenu principal -->
     <div class="login-container">
+        <div class="color-powder"></div>
+        <div class="color-powder"></div>
+        <div class="color-powder"></div>
+        <div class="color-powder"></div>
+        <div class="color-powder"></div>
+        
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-5">
@@ -70,10 +194,12 @@
                         <h2 class="text-center mb-4">Connexion</h2>
                         
                         <!-- Messages d'erreur/succès -->
-                        <div th:if="${param.error}" class="alert alert-danger">
+                        <div th:if="${param.error}" class="alert alert-danger rounded-pill">
+                            <i class="bi bi-exclamation-circle me-2"></i>
                             Identifiants incorrects
                         </div>
-                        <div th:if="${param.logout}" class="alert alert-success">
+                        <div th:if="${param.logout}" class="alert alert-success rounded-pill">
+                            <i class="bi bi-check-circle me-2"></i>
                             Vous avez été déconnecté avec succès
                         </div>
                         
@@ -105,7 +231,7 @@
                             </div>
                             
                             <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Se connecter</button>
+                                <button type="submit" class="btn btn-primary hover-effect">Se connecter</button>
                             </div>
                         </form>
                         
@@ -117,11 +243,11 @@
                         <!-- Connexion sociale -->
                         <div class="social-login">
                             <p class="text-center mb-3">Ou connectez-vous avec</p>
-                            <a href="/oauth2/authorization/google" class="btn social-btn google-btn">
+                            <a href="/oauth2/authorization/google" class="btn social-btn google-btn hover-effect">
                                 <i class="bi bi-google"></i>
                                 Google
                             </a>
-                            <a href="/oauth2/authorization/facebook" class="btn social-btn facebook-btn">
+                            <a href="/oauth2/authorization/facebook" class="btn social-btn facebook-btn hover-effect">
                                 <i class="bi bi-facebook"></i>
                                 Facebook
                             </a>
