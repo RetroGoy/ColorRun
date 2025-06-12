@@ -11,32 +11,46 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
-    <style>
+      <style>
         :root {
-            --color-pink: #ff69b4;
-            --color-purple: #9370db;
-            --color-blue: #4169e1;
-            --color-yellow: #ffd700;
-            --color-green: #32cd32;
+            /* Color Run Theme - Palette cohérente */
+            --primary-pink: #FF1493;
+            --primary-orange: #FF6B00;
+            --primary-yellow: #FFD700;
+            --primary-green: #32CD32;
+            --primary-blue: #00CED1;
+            --primary-purple: #8A2BE2;
+            
+            /* Gradients harmonieux */
+            --gradient-rainbow: linear-gradient(135deg, 
+                var(--primary-pink) 0%, 
+                var(--primary-orange) 20%, 
+                var(--primary-yellow) 40%, 
+                var(--primary-green) 60%, 
+                var(--primary-blue) 80%, 
+                var(--primary-purple) 100%);
+            --gradient-sunset: linear-gradient(135deg, var(--primary-orange), var(--primary-pink));
+            --gradient-ocean: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            --gradient-nature: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
+            
+            /* Neutres */
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --bg-light: #f8f9fa;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
         .hero-section {
-            background: linear-gradient(90deg, 
-                var(--color-pink),
-                var(--color-yellow),
-                var(--color-green),
-                var(--color-blue),
-                var(--color-purple)
-            );
-            background-size: cover;
-            background-position: center;
-            color: white;
+            background: linear-gradient(120deg, var(--primary-pink) 0%, var(--primary-orange) 100%);
+            color: var(--text-light);
             min-height: 60vh;
             height: 60vh;
             padding: 0;
@@ -54,142 +68,323 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, 
-                var(--color-pink),
-                var(--color-yellow),
-                var(--color-green),
-                var(--color-blue),
-                var(--color-purple)
-            );
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="powder" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="10" cy="10" r="8" fill="url(%23powder)"/><circle cx="30" cy="15" r="6" fill="url(%23powder)"/><circle cx="50" cy="8" r="10" fill="url(%23powder)"/><circle cx="70" cy="12" r="7" fill="url(%23powder)"/><circle cx="90" cy="16" r="5" fill="url(%23powder)"/></svg>') repeat;
+            animation: colorPowder 20s infinite linear;
         }
 
-        .hero-section h1 {
+        @keyframes colorPowder {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100px); }
+        }        .hero-section h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-section .lead {
-            font-size: 1.5rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-size: 1.4rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
         }
 
         .btn {
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            font-weight: 500;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--color-purple), var(--color-blue));
+            position: relative;
+            z-index: 2;
             border: none;
         }
 
+        .btn-primary {
+            background: var(--gradient-sunset);
+            color: var(--text-light);
+            box-shadow: var(--shadow);
+        }
+
         .btn-light {
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--color-purple);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary-purple);
+            box-shadow: var(--shadow);
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--shadow-hover);
         }
 
         .feature-card {
-            background: white;
+            background: linear-gradient(135deg, #fff 70%, var(--primary-pink) 120%);
             border: none;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            border-radius: 28px;
+            padding: 2.2rem 1.5rem 2rem 1.5rem;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.13);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, var(--color-pink), var(--color-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--primary-yellow));
+            color: #fff;
+            font-size: 2.5rem;
+            margin: 0 auto 1.2rem auto;
+            box-shadow: 0 2px 8px rgba(255, 20, 147, 0.15);
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: linear-gradient(135deg, var(--primary-purple), var(--primary-orange));
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: linear-gradient(90deg, var(--primary-pink), var(--primary-orange));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.7rem;
+        }
+
+        .card-text {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 0;
         }
 
         .event-date {
-            background: linear-gradient(45deg, var(--color-blue), var(--color-purple));
+            background: var(--gradient-ocean);
             color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
+            padding: 0.6rem 1.8rem;
+            border-radius: 25px;
             display: inline-block;
             margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .card {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }        .card {
             border: none;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
+            height: 100%;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-hover);
         }
 
         .card-img-top {
-            height: 200px;
+            height: 220px;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .badge.bg-success {
+            background: var(--gradient-nature) !important;
+        }
+
+        .badge.bg-warning {
+            background: linear-gradient(135deg, var(--primary-yellow), var(--primary-orange)) !important;
+        }
+
+        .badge.bg-danger {
+            background: var(--gradient-sunset) !important;
+        }
+
+        /* Section titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .hero-section .btn {
+            animation: bounce 2s infinite;
+            animation-delay: 1s;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section .lead {
+                font-size: 1.2rem;
+            }
+            
+            .feature-card {
+                margin-bottom: 2rem;
+            }
         }
 
         .testimonial-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
+            background: linear-gradient(120deg, #fff 80%, #ffe0f3 120%);
+            border-radius: 28px;
+            padding: 2.2rem 1.5rem 2rem 1.5rem;
             margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
             position: relative;
+            text-align: center;
+            border: none;
+            overflow: hidden;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-
-        .testimonial-quote {
-            font-size: 4rem;
-            color: var(--color-purple);
-            opacity: 0.1;
+        .testimonial-icon {
             position: absolute;
-            top: 10px;
-            right: 20px;
+            top: 18px;
+            left: 18px;
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, var(--primary-pink), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.7;
+        }
+        .testimonial-quote {
+            font-size: 1.15rem;
+            color: #333;
+            margin-bottom: 1.2rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(90deg, var(--primary-pink), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.2rem;
+        }
+        .testimonial-event {
+            color: #888;
+            font-size: 0.98rem;
+            margin-bottom: 0;
         }
 
+        /* Call-to-action modernisé */
         .cta-section {
-            background: linear-gradient(45deg, var(--color-purple), var(--color-blue));
-            color: white;
-            padding: 100px 0;
+            background: linear-gradient(120deg, var(--primary-pink) 0%, var(--primary-orange) 100%);
+            color: #fff;
+            padding: 100px 0 80px 0;
             position: relative;
             overflow: hidden;
+            text-align: center;
         }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, 
-                var(--color-pink),
-                var(--color-yellow),
-                var(--color-green),
-                var(--color-blue),
-                var(--color-purple)
-            );
+        .cta-section h2 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.2rem;
+            color: #fff;
+            opacity: 0.95;
+        }
+        .cta-btn {
+            background: linear-gradient(90deg, var(--primary-pink), var(--primary-orange));
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 1rem 2.8rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 18px 0 rgba(255,20,147,0.13);
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        .cta-btn:hover {
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-pink));
+            transform: translateY(-3px) scale(1.04);
+        }
+        .cta-festive {
+            font-size: 2.5rem;
+            margin-bottom: 1.2rem;
+            display: block;
+            color: #fff;
+            opacity: 0.85;
         }
 
         .color-powder-animation {
@@ -273,6 +468,86 @@
             height: 3px;
             background: linear-gradient(45deg, var(--color-purple), var(--color-blue));
         }
+
+        /* Ajout ou modification du CSS pour la section événements */
+        .event-card {
+            background: linear-gradient(135deg, #fff 70%, var(--primary-pink) 120%);
+            border: none;
+            border-radius: 28px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 2rem;
+        }
+        .event-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.13);
+        }
+        .event-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-pink), var(--primary-orange));
+            color: #fff;
+            font-size: 2.5rem;
+            margin: 1.5rem auto 1.2rem auto;
+            box-shadow: 0 2px 8px rgba(255, 20, 147, 0.15);
+        }
+        .event-date {
+            background: linear-gradient(90deg, var(--primary-pink), var(--primary-purple));
+            color: #fff;
+            padding: 0.6rem 1.8rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+        .event-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(90deg, var(--primary-pink), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .event-info {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            text-align: center;
+        }
+        .event-btn {
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-pink));
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 0.7rem 2.2rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 1rem;
+            transition: background 0.2s;
+            text-align: center;
+            display: block;
+        }
+        .event-btn:hover {
+            background: linear-gradient(90deg, var(--primary-pink), var(--primary-orange));
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -304,29 +579,23 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card feature-card h-100">
-                    <div class="card-body text-center">
-                        <i class="bi bi-emoji-smile feature-icon"></i>
-                        <h3 class="card-title">Pour le plaisir</h3>
-                        <p class="card-text">Une expérience unique et colorée qui vous fera sourire du début à la fin.</p>
-                    </div>
+                    <div class="feature-icon"><i class="bi bi-emoji-smile"></i></div>
+                    <h3 class="card-title">Pour le plaisir</h3>
+                    <p class="card-text">Une expérience unique et colorée qui vous fera sourire du début à la fin.</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card feature-card h-100">
-                    <div class="card-body text-center">
-                        <i class="bi bi-people feature-icon"></i>
-                        <h3 class="card-title">Pour la communauté</h3>
-                        <p class="card-text">Rejoignez une communauté dynamique et partagez des moments inoubliables.</p>
-                    </div>
+                    <div class="feature-icon"><i class="bi bi-people"></i></div>
+                    <h3 class="card-title">Pour la communauté</h3>
+                    <p class="card-text">Rejoignez une communauté dynamique et partagez des moments inoubliables.</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card feature-card h-100">
-                    <div class="card-body text-center">
-                        <i class="bi bi-heart feature-icon"></i>
-                        <h3 class="card-title">Pour la santé</h3>
-                        <p class="card-text">Restez en forme tout en vous amusant avec nos parcours adaptés à tous les niveaux.</p>
-                    </div>
+                    <div class="feature-icon"><i class="bi bi-heart"></i></div>
+                    <h3 class="card-title">Pour la santé</h3>
+                    <p class="card-text">Restez en forme tout en vous amusant avec nos parcours adaptés à tous les niveaux.</p>
                 </div>
             </div>
         </div>
@@ -337,45 +606,33 @@
         <h2 class="text-center mb-4">Prochains événements</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="event-card">
                     <div class="event-date">15 Mai 2025</div>
-                    <div class="card-img-top d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, var(--color-pink), var(--color-yellow)); height: 200px;">
-                        <i class="bi bi-flag" style="font-size: 3rem; color: white;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ColorRun Paris</h5>
-                        <p class="card-text mb-1"><i class="bi bi-geo-alt text-primary"></i> Parc de la Villette</p>
-                        <p class="card-text"><i class="bi bi-rulers text-primary"></i> 5 km</p>
-                        <a th:href="@{/races/1}" class="btn btn-primary hover-effect">En savoir plus</a>
-                    </div>
+                    <div class="event-icon"><i class="bi bi-flag"></i></div>
+                    <div class="event-title">ColorRun Paris</div>
+                    <div class="event-info"><i class="bi bi-geo-alt"></i> Parc de la Villette</div>
+                    <div class="event-info"><i class="bi bi-rulers"></i> 5 km</div>
+                    <a th:href="@{/races/1}" class="event-btn">En savoir plus</a>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="event-card">
                     <div class="event-date">22 Juin 2025</div>
-                    <div class="card-img-top d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, var(--color-blue), var(--color-green)); height: 200px;">
-                        <i class="bi bi-flag" style="font-size: 3rem; color: white;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ColorRun Lyon</h5>
-                        <p class="card-text mb-1"><i class="bi bi-geo-alt text-primary"></i> Parc de la Tête d'Or</p>
-                        <p class="card-text"><i class="bi bi-rulers text-primary"></i> 7 km</p>
-                        <a th:href="@{/races/2}" class="btn btn-primary hover-effect">En savoir plus</a>
-                    </div>
+                    <div class="event-icon"><i class="bi bi-flag"></i></div>
+                    <div class="event-title">ColorRun Lyon</div>
+                    <div class="event-info"><i class="bi bi-geo-alt"></i> Parc de la Tête d'Or</div>
+                    <div class="event-info"><i class="bi bi-rulers"></i> 7 km</div>
+                    <a th:href="@{/races/2}" class="event-btn">En savoir plus</a>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
+                <div class="event-card">
                     <div class="event-date">8 Juillet 2025</div>
-                    <div class="card-img-top d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, var(--color-purple), var(--color-pink)); height: 200px;">
-                        <i class="bi bi-flag" style="font-size: 3rem; color: white;"></i>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">ColorRun Marseille</h5>
-                        <p class="card-text mb-1"><i class="bi bi-geo-alt text-primary"></i> Parc Borély</p>
-                        <p class="card-text"><i class="bi bi-rulers text-primary"></i> 10 km</p>
-                        <a th:href="@{/races/3}" class="btn btn-primary hover-effect">En savoir plus</a>
-                    </div>
+                    <div class="event-icon"><i class="bi bi-flag"></i></div>
+                    <div class="event-title">ColorRun Marseille</div>
+                    <div class="event-info"><i class="bi bi-geo-alt"></i> Parc Borély</div>
+                    <div class="event-info"><i class="bi bi-rulers"></i> 10 km</div>
+                    <a th:href="@{/races/3}" class="event-btn">En savoir plus</a>
                 </div>
             </div>
         </div>
@@ -387,41 +644,26 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="testimonial-card">
-                    <i class="bi bi-quote testimonial-quote"></i>
-                    <p class="mb-3">"Une expérience incroyable ! L'ambiance était au rendez-vous et l'organisation parfaite."</p>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: var(--color-pink); color: white; font-size: 1.5rem;">S</div>
-                        <div>
-                            <h5 class="mb-0">Sophie D.</h5>
-                            <small class="text-muted">ColorRun Paris 2024</small>
-                        </div>
-                    </div>
+                    <span class="testimonial-icon"><i class="bi bi-chat-quote"></i></span>
+                    <div class="testimonial-quote">"Une expérience incroyable ! L'ambiance était au rendez-vous et l'organisation parfaite."</div>
+                    <div class="testimonial-name">Sophie D.</div>
+                    <div class="testimonial-event">ColorRun Paris 2024</div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="testimonial-card">
-                    <i class="bi bi-quote testimonial-quote"></i>
-                    <p class="mb-3">"Je recommande vivement ! Une journée pleine de couleurs et de bonne humeur."</p>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: var(--color-blue); color: white; font-size: 1.5rem;">T</div>
-                        <div>
-                            <h5 class="mb-0">Thomas R.</h5>
-                            <small class="text-muted">ColorRun Lyon 2024</small>
-                        </div>
-                    </div>
+                    <span class="testimonial-icon"><i class="bi bi-chat-quote"></i></span>
+                    <div class="testimonial-quote">"Je recommande vivement ! Une journée pleine de couleurs et de bonne humeur."</div>
+                    <div class="testimonial-name">Thomas R.</div>
+                    <div class="testimonial-event">ColorRun Lyon 2024</div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="testimonial-card">
-                    <i class="bi bi-quote testimonial-quote"></i>
-                    <p class="mb-3">"Ma première course colorée et certainement pas la dernière ! Un moment inoubliable."</p>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: var(--color-purple); color: white; font-size: 1.5rem;">M</div>
-                        <div>
-                            <h5 class="mb-0">Marie L.</h5>
-                            <small class="text-muted">ColorRun Marseille 2024</small>
-                        </div>
-                    </div>
+                    <span class="testimonial-icon"><i class="bi bi-chat-quote"></i></span>
+                    <div class="testimonial-quote">"Ma première course colorée et certainement pas la dernière ! Un moment inoubliable."</div>
+                    <div class="testimonial-name">Marie L.</div>
+                    <div class="testimonial-event">ColorRun Marseille 2024</div>
                 </div>
             </div>
         </div>
@@ -429,17 +671,11 @@
 
     <!-- Section Call-to-Action -->
     <section class="cta-section mb-5">
-        <div class="color-powder-animation">
-            <div class="cta-powder"></div>
-            <div class="cta-powder"></div>
-            <div class="cta-powder"></div>
-            <div class="cta-powder"></div>
-            <div class="cta-powder"></div>
-        </div>
+        <span class="cta-festive"><i class="bi bi-stars"></i></span>
         <div class="container text-center">
             <h2 class="mb-4 text-white">Prêt à rejoindre l'aventure ColorRun ?</h2>
             <p class="lead mb-4 text-white">Inscrivez-vous maintenant et préparez-vous à vivre une expérience unique !</p>
-            <a th:href="@{/register}" class="btn btn-light btn-lg hover-effect">Je m'inscris</a>
+            <a th:href="@{/register}" class="cta-btn">Je m'inscris</a>
         </div>
     </section>
 

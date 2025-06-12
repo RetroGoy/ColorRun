@@ -15,132 +15,176 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     
     <style>
-        :root {
-            --color-pink: #ff69b4;
-            --color-purple: #9370db;
-            --color-blue: #4169e1;
-            --color-yellow: #ffd700;
-            --color-green: #32cd32;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f8f9fa;
-        }
-        .race-card {
-            transition: all 0.3s ease;
-            border-radius: 15px;
-            overflow: hidden;
-            border: none;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        .race-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--color-pink), var(--color-yellow), var(--color-blue), var(--color-green), var(--color-purple));
-            z-index: 1;
-        }
-        .race-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        .race-card .card-img-top {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
-            background: linear-gradient(135deg, var(--color-pink), var(--color-yellow), var(--color-blue), var(--color-green), var(--color-purple));
-            color: white;
-            font-size: 3rem;
-        }
-        .race-card .card-img-top i {
-            font-size: 3rem;
-        }
-        .progress {
-            height: 10px;
-            border-radius: 25px;
-            background-color: #f0f0f0;
-            overflow: hidden;
-        }
-        .progress-bar {
-            background: linear-gradient(45deg, var(--color-blue), var(--color-purple));
-            transition: width 0.3s ease;
-        }
-        .hero-section {
-            background: linear-gradient(90deg, var(--color-pink), var(--color-yellow), var(--color-green), var(--color-blue), var(--color-purple));
-            color: white;
-            min-height: 40vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--color-pink), var(--color-yellow), var(--color-blue), var(--color-green), var(--color-purple));
-        }
-        .hero-section h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        .hero-section .lead {
-            font-size: 1.3rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
-        }
-        .race-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            color: #666;
-        }
-        .race-info i {
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, var(--color-blue), var(--color-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-right: 0.5rem;
-        }
-        .btn-register {
-            background: linear-gradient(45deg, var(--color-green), var(--color-blue));
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-        .btn-register:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            background: linear-gradient(45deg, var(--color-blue), var(--color-green));
-            color: white;
-        }
-        .participants-count {
-            font-weight: 500;
-            color: var(--color-blue);
-        }
-        .race-description {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-    </style>
+:root {
+    --color-pink: #ff006a;
+    --color-orange: #ff6b00;
+    --color-purple: #8a2be2;
+    --color-bg-light: #f9f9fb;
+    --color-white: #ffffff;
+    --color-text-dark: #2c3e50;
+    --color-text-muted: #6c757d;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--color-bg-light);
+    color: var(--color-text-dark);
+}
+
+/* Hero section */
+.hero-section {
+    background: linear-gradient(90deg, var(--color-pink) 0%, var(--color-orange) 100%);
+    color: var(--color-white);
+    min-height: 32vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-bottom: 3.5rem;
+}
+
+.hero-section h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.hero-section .lead {
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: #fdfdfd;
+    margin-top: 0.7rem;
+}
+
+/* Cards */
+.race-card {
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: none;
+}
+
+.race-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+}
+
+.race-card::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-pink), var(--color-orange));
+}
+
+.card-img-top {
+    font-size: 2.5rem;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-pink);
+    background: linear-gradient(45deg, #ffe3ee, #fff5ec);
+}
+
+.card-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.race-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.race-info i {
+    margin-right: 0.5rem;
+    color: var(--color-pink);
+}
+
+/* Description et participants */
+.race-description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.participants-count {
+    font-weight: 600;
+    color: var(--color-orange);
+    margin-bottom: 0.3rem;
+}
+
+/* Progress bar */
+.progress {
+    height: 10px;
+    background: #eaeaea;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--color-pink), var(--color-orange));
+    transition: width 0.3s ease;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(90deg, var(--color-pink), var(--color-orange));
+    border: none;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.8rem;
+    transition: background 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 0, 0.15);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, var(--color-orange), var(--color-pink));
+    color: #fff;
+}
+
+.btn-outline {
+    background: #fff;
+    border: 2px solid var(--color-pink);
+    color: var(--color-pink);
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 0.6rem 1.8rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: var(--color-pink);
+    color: #fff;
+}
+
+/* Section container spacing */
+section.container {
+    margin-bottom: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.1rem;
+    }
+    .hero-section .lead {
+        font-size: 1rem;
+    }
+}
+</style>
+
+
 </head>
 <body>
     <!-- En-tête -->
@@ -163,7 +207,7 @@
     <!-- Liste des courses -->
     <section class="container mb-5">
         <div class="row">
-            <div class="col-md-4 mb-4" th:each="race : ${races}">
+            <div class="col-md-4 mb-4" th:each="race : ${races}" style="background: linear-gradient(135deg, #fff 70%, #FFD1EA 120%);">
                 <div class="card race-card h-100">
                     <div class="card-img-top">
                         <i class="bi bi-flag"></i>
@@ -201,10 +245,8 @@
                         </div>
                         <p class="race-description" th:text="${race.description}">Description</p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a th:href="@{'/races/' + ${race.id}}" class="btn btn-primary hover-effect">En savoir plus</a>
-                            <a th:href="@{'/races/' + ${race.id} + '/register'}" class="btn btn-register hover-effect">
-                                S'inscrire
-                            </a>
+                            <a th:href="@{'/races/' + ${race.id}}" class="btn btn-primary">En savoir plus</a>
+                            <a th:href="@{'/races/' + ${race.id} + '/register'}" class="btn btn-outline">S'inscrire</a>
                         </div>
                     </div>
                 </div>

@@ -15,165 +15,160 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     
     <style>
-        :root {
-            --color-pink: #ff69b4;
-            --color-yellow: #ffd700;
-            --color-blue: #00bfff;
-            --color-green: #32cd32;
-            --color-purple: #9370db;
-        }
-        
-        .login-container {
-            min-height: calc(100vh - 200px);
-            display: flex;
-            align-items: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/resources/images/login-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .login-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
+:root {
+    --color-pink: #ff006a;
+    --color-orange: #ff6b00;
+    --color-bg: #f9f9fb;
+    --color-dark: #2c3e50;
+    --color-light: #ffffff;
+}
 
-        .login-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, 
-                var(--color-pink), 
-                var(--color-yellow), 
-                var(--color-blue), 
-                var(--color-green), 
-                var(--color-purple));
-        }
-        
-        .social-login {
-            border-top: 1px solid #dee2e6;
-            padding-top: 1.5rem;
-            margin-top: 1.5rem;
-            position: relative;
-        }
-        
-        .social-btn {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 12px;
-            border-radius: 25px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .google-btn {
-            background: linear-gradient(45deg, #4285f4, #34a853);
-            color: white;
-            border: none;
-        }
-        
-        .facebook-btn {
-            background: linear-gradient(45deg, #3b5998, #1877f2);
-            color: white;
-            border: none;
-        }
+/* Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-dark);
+}
 
-        .social-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
+/* Page */
+.login-container {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(120deg, var(--color-pink), var(--color-orange));
+    position: relative;
+    padding: 2rem 1rem;
+}
 
-        .form-control {
-            border-radius: 25px;
-            padding: 12px 20px;
-            border: 2px solid #eee;
-            transition: all 0.3s ease;
-        }
+/* Card */
+.login-card {
+    background: var(--color-light);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
 
-        .form-control:focus {
-            border-color: var(--color-blue);
-            box-shadow: 0 0 0 0.2rem rgba(0,191,255,0.25);
-        }
+.login-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--color-pink), var(--color-orange));
+}
 
-        .input-group-text {
-            border-radius: 25px 0 0 25px;
-            background: linear-gradient(45deg, var(--color-blue), var(--color-purple));
-            color: white;
-            border: none;
-        }
+/* Title */
+.login-card h2 {
+    font-weight: 700;
+    color: var(--color-dark);
+}
 
-        .input-group .form-control {
-            border-radius: 0 25px 25px 0;
-        }
+/* Inputs */
+.form-control {
+    border-radius: 25px;
+    padding: 12px 20px;
+    border: 2px solid #eee;
+    transition: all 0.3s ease;
+}
 
-        .btn-primary {
-            border-radius: 25px;
-            padding: 12px 30px;
-        }
+.form-control:focus {
+    border-color: var(--color-pink);
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 106, 0.2);
+}
 
-        .color-powder {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            animation: colorPowder 3s infinite;
-        }
+/* Input Group */
+.input-group-text {
+    border-radius: 25px 0 0 25px;
+    background: linear-gradient(45deg, var(--color-pink), var(--color-orange));
+    color: white;
+    border: none;
+}
 
-        .color-powder:nth-child(1) {
-            background-color: var(--color-pink);
-            left: 10%;
-            animation-delay: 0s;
-        }
+.input-group .form-control {
+    border-radius: 0 25px 25px 0;
+}
 
-        .color-powder:nth-child(2) {
-            background-color: var(--color-yellow);
-            left: 30%;
-            animation-delay: 0.5s;
-        }
+/* Button */
+.btn-primary {
+    background: linear-gradient(90deg, var(--color-pink), var(--color-orange));
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 25px;
+    padding: 12px 30px;
+    transition: 0.3s ease;
+}
 
-        .color-powder:nth-child(3) {
-            background-color: var(--color-blue);
-            left: 50%;
-            animation-delay: 1s;
-        }
+.btn-primary:hover {
+    background: linear-gradient(90deg, var(--color-orange), var(--color-pink));
+    transform: translateY(-2px);
+}
 
-        .color-powder:nth-child(4) {
-            background-color: var(--color-green);
-            left: 70%;
-            animation-delay: 1.5s;
-        }
+/* Social Login */
+.social-login {
+    border-top: 1px solid #dee2e6;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+}
 
-        .color-powder:nth-child(5) {
-            background-color: var(--color-purple);
-            left: 90%;
-            animation-delay: 2s;
-        }
+.social-btn {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 25px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    color: #fff;
+    border: none;
+}
 
-        .form-check-input:checked {
-            background-color: var(--color-blue);
-            border-color: var(--color-blue);
-        }
+.google-btn {
+    background: linear-gradient(45deg, #de5246, #fbbc05);
+}
 
-        a {
-            color: var(--color-blue);
-            transition: all 0.3s ease;
-        }
+.facebook-btn {
+    background: linear-gradient(45deg, #3b5998, #1877f2);
+}
 
-        a:hover {
-            color: var(--color-purple);
-        }
-    </style>
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Text links */
+a {
+    color: var(--color-pink);
+    transition: 0.2s ease;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-orange);
+    text-decoration: underline;
+}
+
+/* Checkbox */
+.form-check-input:checked {
+    background-color: var(--color-pink);
+    border-color: var(--color-pink);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 500;
+}
+</style>
+
 </head>
 <body>
     <!-- En-tête -->
@@ -272,5 +267,36 @@
     <!-- Scripts -->
     <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/5.3.2/js/bootstrap.bundle.min.js}"></script>
+    <script th:inline="javascript">
+        // Obtenir le contexte de l'application depuis Thymeleaf
+        const contextPath = /*[[@{/}]]*/ '';
+
+        // Intercepter la soumission du formulaire
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Données factices pour le profil
+            const mockUser = {
+                firstName: 'Jean',
+                lastName: 'Dupont',
+                email: document.getElementById('email').value,
+                phone: '06 12 34 56 78',
+                address: '123 Rue de la Paix',
+                postalCode: '75000',
+                city: 'Paris',
+                profilePicture: 'https://i.pravatar.cc/150',
+                completedRaces: 5,
+                upcomingRaces: 2,
+                totalDistance: 25,
+                newsletter: true
+            };
+            
+            // Stocker les données dans le localStorage
+            localStorage.setItem('mockUser', JSON.stringify(mockUser));
+            
+            // Rediriger vers la page de profil
+            window.location.href = contextPath + 'profile';
+        });
+    </script>
 </body>
 </html> 

@@ -4,19 +4,37 @@
     <meta charset="UTF-8">
     <style>
         :root {
-            --color-pink: #ff69b4;
-            --color-purple: #9370db;
-            --color-blue: #4169e1;
-            --color-yellow: #ffd700;
-            --color-green: #32cd32;
+            /* Color Run Theme - Palette cohérente */
+            --primary-pink: #FF1493;
+            --primary-orange: #FF6B00;
+            --primary-yellow: #FFD700;
+            --primary-green: #32CD32;
+            --primary-blue: #00CED1;
+            --primary-purple: #8A2BE2;
+            
+            /* Gradients harmonieux */
+            --gradient-rainbow: linear-gradient(135deg, 
+                var(--primary-pink) 0%, 
+                var(--primary-orange) 20%, 
+                var(--primary-yellow) 40%, 
+                var(--primary-green) 60%, 
+                var(--primary-blue) 80%, 
+                var(--primary-purple) 100%);
+            --gradient-ocean: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            
+            --text-light: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --footer-violet-pastel: #E3D1FF;
+            --footer-pink-pastel: #FFD1EA;
         }
 
         footer {
-            background: linear-gradient(45deg, var(--color-purple), var(--color-blue)) !important;
-            color: white;
+            background: linear-gradient(120deg, var(--footer-violet-pastel) 0%, var(--footer-pink-pastel) 100%) !important;
+            color: #2c3e50;
             padding: 4rem 0 2rem;
             position: relative;
             overflow: hidden;
+            margin-top: 4rem;
         }
 
         footer::before {
@@ -26,155 +44,181 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, 
-                var(--color-pink),
-                var(--color-yellow),
-                var(--color-green),
-                var(--color-blue),
-                var(--color-purple)
-            );
+            background: var(--gradient-rainbow);
         }
 
-        footer h5 {
-            color: white;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
+        footer::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="footerPowder" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.05)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="15" cy="5" r="3" fill="url(%23footerPowder)"/><circle cx="35" cy="12" r="4" fill="url(%23footerPowder)"/><circle cx="55" cy="8" r="5" fill="url(%23footerPowder)"/><circle cx="75" cy="15" r="3" fill="url(%23footerPowder)"/><circle cx="90" cy="6" r="4" fill="url(%23footerPowder)"/></svg>') repeat;
+            animation: floatReverse 25s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes floatReverse {
+            0% { transform: translateX(100px); }
+            100% { transform: translateX(-100px); }
+        }
+
+        .footer-content {
             position: relative;
-            display: inline-block;
+            z-index: 2;
+        }
+
+        footer h5, .footer-logo {
+            color: #2c3e50 !important;
+            background: none !important;
+            -webkit-text-fill-color: unset !important;
         }
 
         footer h5::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -8px;
             left: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--color-yellow);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-rainbow);
+            border-radius: 2px;
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.6;
+        footer ul {
+            list-style: none;
+            padding: 0;
         }
 
-        footer .list-unstyled li {
+        footer ul li {
             margin-bottom: 0.8rem;
         }
 
-        footer a {
-            color: rgba(255, 255, 255, 0.9) !important;
+        footer ul li a, .footer-bottom {
+            color: #2c3e50 !important;
+        }
+
+        footer ul li a {
             text-decoration: none;
             transition: all 0.3s ease;
+            font-weight: 500;
+            padding: 0.3rem 0;
+            display: inline-block;
         }
 
-        footer a:hover {
-            color: white !important;
+        footer ul li a:hover {
+            color: #ffe0f3;
             transform: translateX(5px);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.13);
         }
 
-        footer .bi {
-            margin-right: 0.5rem;
-            color: var(--color-yellow);
-        }
-
-        footer .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            margin-right: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        footer .social-links a:hover {
-            background: var(--color-yellow);
-            transform: translateY(-3px);
-        }
-
-        footer .social-links a:hover i {
-            color: var(--color-purple) !important;
-        }
-
-        footer hr {
-            border-color: rgba(255, 255, 255, 0.1);
-            margin: 2rem 0;
-        }
-
-        footer .copyright {
+        .footer-social {
             text-align: center;
-            padding-top: 2rem;
-            color: rgba(255, 255, 255, 0.7);
+            margin: 2.5rem 0 1.5rem;
         }
 
-        .footer-bg-bubbles {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .footer-bg-bubbles span {
-            position: absolute;
+        .footer-social a {
+            display: inline-block;
+            width: 44px;
+            height: 44px;
+            background: #fff;
             border-radius: 50%;
-            opacity: 0.18;
-            filter: blur(2px);
-            animation: footerBubbleMove 10s infinite alternate;
+            margin: 0 0.4rem;
+            line-height: 44px;
+            color: #8A2BE2;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            border: 1px solid #E3D1FF;
         }
-        .footer-bg-bubbles .b1 { background: var(--color-pink); width: 70px; height: 70px; left: 15%; top: 60%; animation-delay: 0s; }
-        .footer-bg-bubbles .b2 { background: var(--color-yellow); width: 50px; height: 50px; left: 80%; top: 20%; animation-delay: 2s; }
-        .footer-bg-bubbles .b3 { background: var(--color-blue); width: 90px; height: 90px; left: 60%; top: 80%; animation-delay: 1s; }
-        .footer-bg-bubbles .b4 { background: var(--color-green); width: 35px; height: 35px; left: 5%; top: 30%; animation-delay: 3s; }
-        .footer-bg-bubbles .b5 { background: var(--color-purple); width: 60px; height: 60px; left: 75%; top: 70%; animation-delay: 1.5s; }
-        @keyframes footerBubbleMove {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-15px) scale(1.08); }
+
+        .footer-social a:hover {
+            background: #FFD1EA;
+            color: #FF1493;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            footer {
+                padding: 3rem 0 1.5rem;
+                text-align: center;
+            }
+            
+            footer h5::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-social a {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <footer th:fragment="footer" style="position:relative;">
-        <div class="footer-bg-bubbles">
-            <span class="b1"></span>
-            <span class="b2"></span>
-            <span class="b3"></span>
-            <span class="b4"></span>
-            <span class="b5"></span>
-        </div>
-        <div class="container">
+    <footer th:fragment="footer" style="background: #fff; color: #222; border-top: 4px solid; border-image: linear-gradient(90deg, #FF1493, #FF6B00, #8A2BE2) 1;">
+        <div class="container footer-content" style="padding: 2.5rem 0 1.5rem 0;">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5>ColorRun</h5>
-                    <p>La course la plus colorée et festive de l'année !</p>
-                    <div class="social-links">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                    </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-logo" style="font-weight:700; font-size:1.5rem; color:#FF1493;">��‍♀️ ColorRun</div>
+                    <p style="color: #444; line-height: 1.6; margin-top:1rem;">
+                        Participez à l'expérience colorée la plus fun !<br>
+                        Courez, riez, et laissez exploser les couleurs dans une course unique en son genre.
+                    </p>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5>Liens utiles</h5>
-                    <ul class="list-unstyled">
-                        <li><a th:href="@{/races}"><i class="bi bi-arrow-right"></i>Courses</a></li>
-                        <li><a th:href="@{/contact}"><i class="bi bi-arrow-right"></i>Contact</a></li>
-                        <li><a th:href="@{/register}"><i class="bi bi-arrow-right"></i>Inscription</a></li>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 style="color:#2c3e50;">Navigation</h5>
+                    <ul style="padding-left:0; list-style: none;">
+                        <li><a href="/" style="color:#2c3e50; text-decoration:none;">Accueil</a></li>
+                        <li><a href="/races" style="color:#2c3e50; text-decoration:none;">Courses</a></li>
+                        <li><a href="/contact" style="color:#2c3e50; text-decoration:none;">Contact</a></li>
+                        <li><a href="/about" style="color:#2c3e50; text-decoration:none;">À propos</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5>Contact</h5>
-                    <ul class="list-unstyled">
-                        <li><i class="bi bi-geo-alt"></i>123 Rue de la Course, Paris</li>
-                        <li><i class="bi bi-envelope"></i>contact@colorrun.fr</li>
-                        <li><i class="bi bi-phone"></i>+33 1 23 45 67 89</li>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 style="color:#2c3e50;">Services</h5>
+                    <ul style="padding-left:0; list-style: none;">
+                        <li><a href="#" style="color:#2c3e50; text-decoration:none;">Inscription courses</a></li>
+                        <li><a href="#" style="color:#2c3e50; text-decoration:none;">Classements</a></li>
+                        <li><a href="#" style="color:#2c3e50; text-decoration:none;">Résultats</a></li>
+                        <li><a href="#" style="color:#2c3e50; text-decoration:none;">Matériel coloré</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 style="color:#2c3e50;">Contact</h5>
+                    <ul style="padding-left:0; list-style: none;">
+                        <li><a href="mailto:info@colorrun.fr" style="color:#2c3e50; text-decoration:none;">info@colorrun.fr</a></li>
+                        <li><a href="tel:+33123456789" style="color:#2c3e50; text-decoration:none;">01 23 45 67 89</a></li>
+                        <li><a href="#" style="color:#2c3e50; text-decoration:none;">Paris, France</a></li>
+                        <li><a href="#" style="color:#2c3e50; text-decoration:none;">Lun-Ven 9h-18h</a></li>
                     </ul>
                 </div>
             </div>
-            <hr>
-            <div class="copyright">
-                <p class="mb-0">&copy; 2024 ColorRun. Tous droits réservés.</p>
+            <div class="footer-social" style="text-align:center; margin:1.5rem 0;">
+                <a href="#" style="color:#FF1493; margin:0 0.3rem; text-decoration:none; font-size:1.3rem;">FB</a>
+                <a href="#" style="color:#8A2BE2; margin:0 0.3rem; text-decoration:none; font-size:1.3rem;">IG</a>
+                <a href="#" style="color:#00CED1; margin:0 0.3rem; text-decoration:none; font-size:1.3rem;">TW</a>
+            </div>
+            <div class="footer-bottom" style="text-align:center; color:#888; font-size:0.95rem;">
+                <p>&copy; 2025 ColorRun. Tous droits réservés. Fait avec <span style="color:#FF1493;">💖</span> pour les amoureux de la course colorée !</p>
             </div>
         </div>
     </footer>

@@ -14,51 +14,114 @@
     
     <style>
         :root {
-            --color-pink: #ff69b4;
-            --color-yellow: #ffd700;
-            --color-blue: #00bfff;
-            --color-green: #32cd32;
-            --color-purple: #9370db;
+            --color-pink: #ff006a;
+            --color-orange: #ff6b00;
+            --color-light: #ffffff;
+            --color-bg: #f9f9fb;
+            --color-dark: #2c3e50;
         }
-        
+
+        /* Body */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-dark);
+        }
+
+        /* Container */
         .contact-container {
             min-height: calc(100vh - 200px);
             padding: 60px 0;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/resources/images/contact-bg.jpg');
+            background: linear-gradient(120deg, var(--color-pink), var(--color-orange));
             background-size: cover;
             background-position: center;
+            background-blend-mode: multiply;
         }
-        
+
+        /* Card */
         .contact-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: var(--color-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
         }
-        
+
+        /* Info block */
         .contact-info {
             padding: 30px;
-            background: #f8f9fa;
+            background: #f1f3f5;
             border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
         }
-        
+
+        /* Info item */
         .contact-info-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 20px;
+            color: var(--color-dark);
         }
-        
+
         .contact-info-item i {
-            font-size: 24px;
+            font-size: 1.4rem;
             margin-right: 15px;
-            color: #007bff;
+            color: var(--color-pink);
         }
-        
+
+        /* Map */
         #map {
             height: 300px;
             border-radius: 15px;
             margin-top: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
         }
-    </style>
+
+        /* Form */
+        .form-control, .form-select {
+            border-radius: 25px;
+            padding: 1rem 1.25rem;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--color-pink);
+            box-shadow: 0 0 0 0.2rem rgba(255, 0, 106, 0.15);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+        }
+
+        /* Labels */
+        .form-floating > label {
+            padding: 1rem 1.25rem;
+        }
+
+        /* Button */
+        .btn-primary {
+            background: linear-gradient(90deg, var(--color-pink), var(--color-orange));
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 25px;
+            padding: 12px 30px;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--color-orange), var(--color-pink));
+            transform: translateY(-2px);
+        }
+
+        /* Alerts */
+        .alert {
+            border-radius: 25px;
+            padding: 1rem 1.25rem;
+            font-weight: 500;
+        }
+        </style>
+
 </head>
 <body>
     <!-- En-tête -->

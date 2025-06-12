@@ -4,109 +4,160 @@
     <meta charset="UTF-8">
     <style>
         :root {
-            --color-pink: #ff69b4;
-            --color-purple: #9370db;
-            --color-blue: #4169e1;
-            --color-yellow: #ffd700;
-            --color-green: #32cd32;
+            /* Color Run Theme - Palette cohérente */
+            --primary-pink: #FF1493;
+            --primary-orange: #FF6B00;
+            --primary-yellow: #FFD700;
+            --primary-green: #32CD32;
+            --primary-blue: #00CED1;
+            --primary-purple: #8A2BE2;
+            
+            /* Gradients harmonieux */
+            --gradient-rainbow: linear-gradient(135deg, 
+                var(--primary-pink) 0%, 
+                var(--primary-orange) 20%, 
+                var(--primary-yellow) 40%, 
+                var(--primary-green) 60%, 
+                var(--primary-blue) 80%, 
+                var(--primary-purple) 100%);
+            
+            --text-light: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --gradient-header: linear-gradient(120deg, var(--primary-pink) 0%, var(--primary-orange) 100%);
+            --header-pink-pastel: #FFD1EA;
+            --header-orange-pastel: #FFE5B4;
         }
+
         body {
             margin: 0;
         }
+
         .navbar {
-            background: linear-gradient(90deg, rgba(255,105,180,0.85) 0%, rgba(255,215,0,0.85) 25%, rgba(50,205,50,0.85) 50%, rgba(65,105,225,0.85) 75%, rgba(147,112,219,0.85) 100%);
-            backdrop-filter: blur(8px);
-            border-radius: 0 0 2rem 2rem;
-            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
-            padding: 0.7rem 0;
-            margin-bottom: 0.5rem;
+            background: linear-gradient(120deg, var(--header-pink-pastel) 0%, var(--header-orange-pastel) 100%) !important;
+            color: #2c3e50;
+            box-shadow: 0 4px 18px 0 rgba(255,20,147,0.07);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 25px 25px;
+            padding: 1rem 0;
+            margin-bottom: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
         .navbar-brand {
-            font-size: 2.1rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            color: #fff !important;
+            color: #2c3e50 !important;
             letter-spacing: 2px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.12);
-            background: linear-gradient(90deg, var(--color-pink), var(--color-yellow), var(--color-green), var(--color-blue), var(--color-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            color: #2c3e50 !important;
+        }
+
         .navbar-nav .nav-link {
-            color: #fff !important;
+            color: #2c3e50 !important;
             font-weight: 600;
             font-size: 1.1rem;
-            margin: 0 0.4rem;
-            border-radius: 2rem;
-            padding: 0.5rem 1.2rem !important;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            margin: 0 0.5rem;
+            border-radius: 25px;
+            padding: 0.7rem 1.5rem !important;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            text-decoration: none;
         }
-        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-            background: rgba(255,255,255,0.18);
-            color: #222 !important;
-            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
+
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            background: rgba(255,255,255,0.25);
+            color: #2c3e50 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
+
         .navbar-toggler {
-            border: none;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
             background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            padding: 0.5rem 0.7rem;
+            transform: scale(1.05);
         }
+
         .navbar-toggler:focus {
-            box-shadow: none;
+            box-shadow: 0 0 0 0.2rem rgba(255,255,255,0.3);
         }
+
         .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
+
+        /* Animation de poudre colorée */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="powder" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:rgba(255,255,255,0.1)"/><stop offset="100%" style="stop-color:rgba(255,255,255,0)"/></radialGradient></defs><circle cx="10" cy="10" r="4" fill="url(%23powder)"/><circle cx="30" cy="15" r="3" fill="url(%23powder)"/><circle cx="50" cy="8" r="5" fill="url(%23powder)"/><circle cx="70" cy="12" r="4" fill="url(%23powder)"/><circle cx="90" cy="16" r="3" fill="url(%23powder)"/></svg>') repeat;
+            animation: float 15s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100px); }
+        }
+
+        /* Responsive design */
         @media (max-width: 991.98px) {
             .navbar-collapse {
                 background: rgba(255,255,255,0.15);
-                border-radius: 1rem;
+                border-radius: 15px;
                 margin-top: 1rem;
-                box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
+                padding: 1rem;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             }
+            
             .navbar-nav .nav-link {
                 margin: 0.3rem 0;
                 text-align: center;
             }
         }
-        .header-bg-bubbles {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .header-bg-bubbles span {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.25;
-            filter: blur(2px);
-            animation: headerBubbleMove 8s infinite alternate;
-        }
-        .header-bg-bubbles .b1 { background: var(--color-pink); width: 60px; height: 60px; left: 10%; top: 10%; animation-delay: 0s; }
-        .header-bg-bubbles .b2 { background: var(--color-yellow); width: 40px; height: 40px; left: 70%; top: 30%; animation-delay: 2s; }
-        .header-bg-bubbles .b3 { background: var(--color-blue); width: 80px; height: 80px; left: 50%; top: 60%; animation-delay: 1s; }
-        .header-bg-bubbles .b4 { background: var(--color-green); width: 30px; height: 30px; left: 80%; top: 10%; animation-delay: 3s; }
-        .header-bg-bubbles .b5 { background: var(--color-purple); width: 50px; height: 50px; left: 20%; top: 70%; animation-delay: 1.5s; }
-        @keyframes headerBubbleMove {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(-20px) scale(1.1); }
+
+        @media (max-width: 768px) {
+            .navbar {
+                border-radius: 0 0 20px 20px;
+                padding: 0.8rem 0;
+            }
+            
+            .navbar-brand {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
         }
     </style>
 </head>
 <body>
-    <header th:fragment="header" style="position:relative;">
-        <div class="header-bg-bubbles">
-            <span class="b1"></span>
-            <span class="b2"></span>
-            <span class="b3"></span>
-            <span class="b4"></span>
-            <span class="b5"></span>
-        </div>
+    <header th:fragment="header" class="header" style="position: relative; background: #fff; color: #222; border-bottom: 4px solid; border-image: linear-gradient(90deg, #FF1493, #FF6B00, #8A2BE2) 1;">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" th:href="@{/}">ColorRun</a>
+                <a class="navbar-brand" th:href="@{/}">
+                    🏃‍♀️ ColorRun
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -114,21 +165,21 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/}">Accueil</a>
+                            <a class="nav-link" th:href="@{/}">🏠 Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/races}">Courses</a>
+                            <a class="nav-link" th:href="@{/races}">🏃 Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/contact}">Contact</a>
+                            <a class="nav-link" th:href="@{/contact}">📞 Contact</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/login}">Connexion</a>
+                            <a class="nav-link" th:href="@{/login}">🔐 Connexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/register}">Inscription</a>
+                            <a class="nav-link" th:href="@{/register}">📝 Inscription</a>
                         </li>
                     </ul>
                 </div>

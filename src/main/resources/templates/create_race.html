@@ -14,63 +14,159 @@
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
-    <style>
-        :root {
-            --color-pink: #ff69b4;
-            --color-yellow: #ffd700;
-            --color-blue: #00bfff;
-            --color-green: #32cd32;
-            --color-purple: #9370db;
-        }
-        
-        .create-race-container {
-            min-height: calc(100vh - 200px);
-            padding: 60px 0;
-            background-color: #f8f9fa;
-        }
-        
-        .create-race-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        #map {
-            height: 300px;
-            border-radius: 10px;
-        }
-        
-        .form-section {
-            border-bottom: 1px solid #dee2e6;
-            padding-bottom: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .form-section:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-            margin-bottom: 0;
-        }
-        
-        .image-preview {
-            width: 100%;
-            height: 200px;
-            border-radius: 10px;
-            object-fit: cover;
-            margin-top: 10px;
-        }
-        
-        .schedule-item {
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .schedule-item:last-child {
-            margin-bottom: 0;
-        }
-    </style>
+<style>
+:root {
+    --color-pink: #ff006a;
+    --color-orange: #ff6b00;
+    --color-light: #ffffff;
+    --color-bg: #f9f9fb;
+    --color-dark: #2c3e50;
+}
+
+/* Global */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-dark);
+}
+
+/* Page container */
+.create-race-container {
+    min-height: calc(100vh - 200px);
+    padding: 60px 0;
+}
+
+/* Card */
+.create-race-card {
+    background: var(--color-light);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Form sections */
+.form-section {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* Titles */
+h1, h4 {
+    font-weight: 700;
+    color: var(--color-dark);
+}
+
+/* Inputs */
+.form-control, .form-select {
+    border-radius: 25px;
+    padding: 1rem 1.25rem;
+    border: 2px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-pink);
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 106, 0.15);
+}
+
+.form-floating > label {
+    padding: 1rem 1.25rem;
+}
+
+/* Textarea height override */
+textarea.form-control {
+    min-height: 120px;
+}
+
+/* Button */
+.btn-primary {
+    background: linear-gradient(90deg, var(--color-pink), var(--color-orange));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 25px;
+    padding: 12px 30px;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, var(--color-orange), var(--color-pink));
+    transform: translateY(-2px);
+}
+
+/* Button outline */
+.btn-outline-primary {
+    border: 2px solid var(--color-pink);
+    color: var(--color-pink);
+    border-radius: 25px;
+    font-weight: 500;
+}
+
+.btn-outline-primary:hover {
+    background: var(--color-pink);
+    color: #fff;
+}
+
+/* Trash button */
+.btn-danger {
+    border-radius: 50%;
+    padding: 8px 12px;
+}
+
+/* Map */
+#map {
+    height: 300px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Schedule */
+.schedule-item {
+    background-color: #f1f3f5;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid var(--color-pink);
+}
+
+/* Image preview */
+.image-preview {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-top: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 25px;
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+}
+
+/* Small hint text */
+small.text-muted {
+    display: inline-block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+}
+
+/* Label spacing for required hints */
+label.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+</style>
+
 </head>
 <body>
     <!-- En-tête -->
